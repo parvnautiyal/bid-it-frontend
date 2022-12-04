@@ -1,0 +1,147 @@
+<br>
+<div class="container">
+  <h1>Registration Form</h1>
+  <p>New users can register here.</p>
+  <hr>
+  <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" autocomplete="off">
+    <div class="mb-3">
+      <label for="firstname" class="form-label">First Name</label>
+      <input
+        type="text"
+        class="form-control form-control-lg"
+        [class]="firstname.touched ? firstname.valid ? 'is-valid':'is-invalid':''"
+        name="firstname"
+        id="firstname"
+        aria-describedby="firstnameHelp"
+        required
+        ngModel
+        #firstname="ngModel">
+      <div class="invalid-feedback" *ngIf="firstname.touched && firstname.invalid">
+        Firstname cannot be empty.
+      </div>
+      <div id="firstnameHelp" class="form-text" *ngIf="firstname.untouched">Please enter your first name.</div>
+    </div>
+    <div class="mb-3">
+      <label for="lastname" class="form-label">Last Name</label>
+      <input
+        type="text"
+        class="form-control form-control-lg"
+        [class]="lastname.touched ? lastname.valid ? 'is-valid':'is-invalid':''"
+        name="lastname"
+        id="lastname"
+        aria-describedby="lastnameHelp"
+        required
+        ngModel
+        #lastname="ngModel">
+      <div class="invalid-feedback" *ngIf="lastname.touched && lastname.invalid">
+        Lastname cannot be empty.
+      </div>
+      <div id="lastnameHelp" class="form-text" *ngIf="lastname.untouched">Please enter your last name.</div>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email Address</label>
+      <input
+        type="email"
+        class="form-control form-control-lg"
+        [class]="email.touched ? email.valid ? 'is-valid':'is-invalid':''"
+        name="email"
+        id="email"
+        aria-describedby="emailHelp"
+        required
+        email
+        ngModel
+        #email="ngModel">
+      <div class="invalid-feedback" *ngIf="email.touched && email.invalid">
+        {{email.hasError('email') ? 'Please enter a valid email.' : 'Email cannot be empty.'}}
+      </div>
+      <div id="emailHelp" class="form-text" *ngIf="email.untouched">Please enter your email address.</div>
+    </div>
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input
+        type="text"
+        class="form-control form-control-lg"
+        [class]="username.touched ? username.valid ? 'is-valid':'is-invalid':''"
+        name="username"
+        id="username"
+        pattern="^[a-zA-Z]+([._]?[a-zA-Z0-9]+)*$"
+        aria-describedby="usernameHelp"
+        required
+        ngModel
+        #username="ngModel">
+      <div class="invalid-feedback" *ngIf="username.touched && username.invalid">
+        {{username.hasError('required') ? 'Username cannot be empty' : 'Please enter a valid username.'}}
+      </div>
+      <div id="usernameHelp" class="form-text" *ngIf="username.untouched">Please choose a unique username, should
+        contain
+        alphabets, numbers and '_' only, cannot start with numbers or '_', and cannot end with '_'.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <div class="input-group">
+        <input
+          type="password"
+          class="form-control form-control-lg"
+          [class]="password.touched ? password.valid ? 'is-valid':'is-invalid':''"
+          name="password"
+          id="password"
+          value=""
+          required
+          minlength="8"
+          maxlength="16"
+          aria-describedby="passwordHelp"
+          ngModel
+          [(ngModel)]="len"
+          #password="ngModel">
+        <span class="input-group-text" id="inputGroupSuffix">{{len.length}}/{{len.length >= 8 ? '16' : '8'}}</span>
+        <div class="invalid-feedback" *ngIf="password.touched && password.invalid">
+          {{password.hasError('required') ? 'Please enter a password' : 'Password should be 8-16 characters long'}}
+        </div>
+      </div>
+      <div id="passwordHelp" class="form-text" *ngIf="password.untouched">Please choose a strong password which
+        is 8-16 characters long.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="contact" class="form-label" style="align-content: center">Phone Number</label>
+      <div class="input-group">
+        <span class="input-group-text" id="inputGroupPrepend">+91</span>
+        <input
+          type="text"
+          class="form-control form-control-lg"
+          [class]="contact.touched ? contact.valid ? 'is-valid':'is-invalid':''"
+          name="contact"
+          id="contact"
+          pattern="^[1-9]{1}[0-9]{9}$"
+          required
+          ngModel
+          #contact="ngModel">
+        <div class="invalid-feedback" *ngIf="contact.touched && contact.invalid">
+          {{contact.hasError('required') ? 'Phone number is required' : 'Please enter a valid phone number'}}
+        </div>
+      </div>
+      <div id="contactHelp" class="form-text" *ngIf="contact.untouched">Please enter your 10-digit mobile number.
+      </div>
+    </div>
+    <div class="form-check mb-3">
+      <input
+        class="form-check-input"
+        [class]="check.value?'is-valid':'is-invalid'"
+        type="checkbox"
+        name="check"
+        id="invalidCheck"
+        ngModel
+        #check="ngModel"
+        required>
+      <label class="form-check-label" for="invalidCheck">
+        Agree to terms and conditions
+      </label>
+    </div>
+    <div class="btn-toolbar">
+      <button class="btn btn-success me-2 mb-2" type="submit" [disabled]="registerForm.invalid">Register</button>
+      <button class="btn btn-danger me-2 mb-2" type="button" (click)="onReset()">Reset</button>
+    </div>
+  </form>
+  <br>
+</div>

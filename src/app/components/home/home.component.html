@@ -1,0 +1,43 @@
+<div class="container mt-5" style="margin-bottom:50px">
+  <carousel [interval]="myInterval">
+    <slide>
+      <img src="../../../assets/images/1.jpg" alt="first slide" class="image">
+      <div class="carousel-caption d-none d-md-block">
+        <h3>
+          <mark>Race Against Time!</mark>
+        </h3>
+        <p>
+          <mark>For every auction, the clock is running. Bid fast.</mark>
+        </p>
+        <a class="btn but" (click)="onClick(intro)">GET STARTED</a>
+      </div>
+    </slide>
+    <slide>
+      <img src="../../../assets/images/2.jpg" alt="second slide" class="image">
+      <div class="carousel-caption d-none d-md-block">
+        <h3>
+          <mark>Bidding Time</mark>
+        </h3>
+        <p>
+          <mark>All products are up for grabs! Start bidding now.</mark>
+        </p>
+        <button class="btn but" (click)="onClick(intro)">GET STARTED</button>
+      </div>
+    </slide>
+    <slide>
+      <img src="../../../assets/images/3.jpg" alt="third slide" class="image">
+      <div class="carousel-caption d-none d-md-block">
+        <h3>
+          <mark>Verified Products</mark>
+        </h3>
+        <p>
+          <mark>All products are verified and genuine</mark>
+        </p>
+        <a class="btn but" (click)="onClick(intro)">GET STARTED</a>
+      </div>
+    </slide>
+  </carousel>
+</div>
+<div #intro class="container mb-5">
+  <app-intro></app-intro>
+</div>

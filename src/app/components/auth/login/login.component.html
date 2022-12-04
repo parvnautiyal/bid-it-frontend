@@ -1,0 +1,43 @@
+<div class="container height">
+  <br>
+  <h1>Login Form</h1>
+  <p>Existing users can login here with their credentials.</p>
+  <hr>
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" autocomplete="off">
+    <div class="mb-3">
+      <label class="form-label" for="username">Username</label>
+      <input
+        class="form-control form-control-lg"
+        type="text"
+        name="username"
+        id="username"
+        required
+        ngModel
+        #username="ngModel">
+      <div class="alert-danger" *ngIf="username.touched && username.invalid">Username cannot be empty.</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="password">Password</label>
+      <input
+        type="password"
+        class="form-control form-control-lg"
+        name="password"
+        id="password"
+        required
+        ngModel
+        #password="ngModel">
+      <div class="alert-danger" *ngIf="password.touched && password.invalid">Password cannot be empty.</div>
+    </div>
+    <div>
+      <button class="btn btn-success me-2 mb-2" type="submit" [disabled]="loginForm.invalid">Login</button>
+      <button class="btn btn-danger mb-2 me-2" type="button" (click)="onReset()">Cancel</button>
+    </div>
+    <br>
+    <div *ngIf="errorMsg" class="alert-danger">
+      <alert type="danger">
+        <strong>Oh snap!</strong> {{errorMsg}}. Please try again.
+      </alert>
+    </div>
+  </form>
+  <br>
+</div>

@@ -1,0 +1,62 @@
+<div class="container mt-2">
+  <h1>Product Details</h1>
+  <hr>
+  <div class="input-group" (click)="refreshPrice()" style="cursor: pointer"><span
+    class="material-symbols-outlined">sync</span>
+    <p>Refresh</p></div>
+  <div class="row">
+    <div class="col-md-6">
+      <img src="{{product.img}}" class="card-img-top img-fluid" alt="{{product.name}}">
+    </div>
+    <div class="col-md-6 mt-5">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+          <p class="card-text">{{product.description}}</p>
+          <p class="card-text"><small class="text-muted"><b>Starting Price: </b>{{product.amount |currency:'INR'}}
+          </small></p>
+          <p class="card-text"><small class="text-muted"><b>Current Price: </b>{{currentPrice |currency:'INR'}}
+          </small></p>
+        </div>
+      </div>
+      <div class="input-group">
+        <span class="material-symbols-outlined input-group-text">currency_rupee</span>
+        <input #input="ngModel" class="form-control" id="amount" name="amount" [(ngModel)]="bidAmount"
+               type="number"
+               [min]="currentPrice"
+               max="10000" required>
+        <button class="btn btn-success" (click)="addBid(product.id)" [disabled]="input.invalid">BID IT</button>
+      </div>
+      <div id="contactHelp" class="form-text" *ngIf="input.untouched">Please enter an amount greater than the current
+        bid,
+        but not more than {{'10000' |currency:'INR'}}.
+      </div>
+      <div class="alert-danger" *ngIf="input.invalid && input.touched">Amount Entered is not acceptable.</div>
+    </div>
+  </div>
+  <br>
+  <ng-container *ngIf="visible; else elseBlock">
+    <div class="mb-2">
+      <progressbar class="progress-striped active" [value]="value" [type]="type" [animate]="true">
+        <i>{{value| number : '1.2-2'}}%</i>
+      </progressbar>
+    </div>
+    <br>
+    <div class="bg-light">
+      <h6>Time Left:</h6>
+      <div id="timer">
+        <span id="hours">{{hours}}</span>hours
+        <span id="minutes">{{minutes}}</span>minutes
+        <span id="seconds">{{seconds}}</span>seconds
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #elseBlock>
+    <alert type="success">
+      {{message}}
+    </alert>
+  </ng-template>
+  {{message}}
+  <br>
+</div>
+

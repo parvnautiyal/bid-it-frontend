@@ -1,0 +1,13 @@
+<div>
+  <tabset>
+    <tab heading="Contact us" id="tab1">
+      <br>
+      <app-contact (ticketOpen)="toggleTicket()" *ngIf="!ticket"></app-contact>
+      <app-ticket *ngIf="ticket" (toggleTicket)="toggleTicket()"></app-ticket>
+    </tab>
+    <tab heading="Technologies">
+      <br>
+      <app-technology></app-technology>
+    </tab>
+  </tabset>
+</div>

@@ -1,0 +1,164 @@
+<div class="container contain">
+  <h1>Create Auction</h1>
+  <p>Please fill the details to post an auction.</p>
+  <br>
+  <form #addForm="ngForm" (ngSubmit)="onSubmit()">
+    <accordion [isAnimated]=true>
+      <accordion-group [isOpen]=true>
+        <h5>Details</h5>
+        <p>Add details about your product.</p>
+        <hr>
+        <button
+          class="btn btn-block justify-content-between d-flex w-100  shadow-none"
+          accordion-heading type="button">
+          <div class="pull-left float-left btn-link">Product Details</div>
+          <span class="material-symbols-outlined">arrow_drop_down</span>
+        </button>
+        <div class="mb-3">
+          <label class="form-label" for="name">Product Name</label>
+          <input
+            class="form-control"
+            id="name"
+            type="text"
+            name="name"
+            #name="ngModel"
+            ngModel
+            required>
+          <div class="form-text alert-danger" *ngIf="name.invalid && name.touched">Name cannot be empty.</div>
+          <div class="form-text">Please enter the name of your item.</div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="description">Product Description</label>
+          <textarea
+            class="form-control"
+            id="description"
+            type="text"
+            name="description"
+            required
+            ngModel
+            #description="ngModel"></textarea>
+          <div class="form-text alert-danger" *ngIf="description.invalid && description.touched">Description cannot be
+            empty.
+          </div>
+          <div class="form-text">Please describe your item.</div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="img">Product Image URL</label>
+          <input
+            class="form-control"
+            id="img"
+            name="img"
+            type="text"
+            ngModel
+            #img="ngModel"
+            required>
+          <div class="form-text alert-danger" *ngIf="img.invalid && img.touched">Image URL cannot be empty.</div>
+          <div class="form-text">Please enter an image URL of your item.</div>
+        </div>
+      </accordion-group>
+      <accordion-group [isOpen]=true>
+        <h5>Details</h5>
+        <p>Add details about the auction.</p>
+        <hr>
+        <button
+          class="btn btn-block justify-content-between d-flex w-100  shadow-none"
+          accordion-heading type="button">
+          <div class="pull-left float-left btn-link">Auction Details</div>
+          <span class="material-symbols-outlined">arrow_drop_down</span>
+        </button>
+        <div class="mb-3">
+          <label class="form-label" for="amount">Starting Amount</label>
+          <div class="input-group">
+            <span class="input-group-text material-symbols-outlined">currency_rupee</span>
+            <input
+              class="form-control"
+              type="number"
+              id="amount"
+              name="amount"
+              required
+              max="10000"
+              min="500"
+              ngModel
+              #amount="ngModel">
+          </div>
+          <div class="form-text alert-danger" *ngIf="amount.hasError('required') && amount.touched">Amount cannot be
+            empty.
+          </div>
+          <div class="form-text alert-danger"
+               *ngIf="(amount.hasError('min') || amount.hasError('max')) && amount.touched">Please enter a valid amount.
+          </div>
+          <div class="form-text">Please enter the starting amount for your item
+            between {{'500' |currency:'INR'}} - {{'10000' |currency:'INR'}}.
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-10 mb-3">
+            <label class="form-label" for="duration">Duration</label>
+            <input
+              class="form-control"
+              type="number"
+              id="duration"
+              name="duration"
+              min="{{value==='H'?1:10}}"
+              max="{{value==='H'?5:59}}"
+              required
+              ngModel
+              #duration="ngModel">
+            <div class="form-text alert-danger"
+                 *ngIf="duration.touched && (duration.hasError('min')||duration.hasError('max'))">Please enter a valid
+              duration.
+            </div>
+            <div class="form-text alert-danger" *ngIf="duration.touched && duration.hasError('required')">Duration
+              cannot be empty.
+            </div>
+            <div
+              class="form-text">{{tf.value === 'H' ? 'Please enter a value between 1 and 5.' : 'please enter a value between 10 and 59.'}}</div>
+          </div>
+          <div class="col-md-2 mb-3">
+            <label for="tf" class="form-label">Time Format</label>
+            <select
+              #tf="ngModel"
+              id="tf"
+              name="tf"
+              class="form-select"
+              required
+              ngModel
+              [(ngModel)]="value">
+              <option value="H">Hours</option>
+              <option value="M">Minutes</option>
+            </select>
+          </div>
+        </div>
+      </accordion-group>
+      <accordion-group
+        [isOpen]=true>
+        <button
+          class="btn btn-block justify-content-between d-flex w-100  shadow-none"
+          accordion-heading type="button">
+          <div class="pull-left float-left btn-link">Create Auction</div>
+          <span class="material-symbols-outlined">arrow_drop_down</span>
+        </button>
+        <div class="form-check mb-3">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="check"
+            name="check"
+            ngModel
+            #check="ngModel"
+            required>
+          <label class="form-check-label" for="check">
+            By checking this, you agree to our terms and conditions.
+          </label>
+        </div>
+        <div class="mb-3">
+          <button class="btn btn-success me-2 mb-2" type="submit" [disabled]="addForm.invalid">Post Auction</button>
+          <button class="btn btn-danger me-2 mb-2" type="button" (click)="onReset()">Cancel</button>
+        </div>
+      </accordion-group>
+    </accordion>
+  </form>
+</div>
+<br>
+<br>

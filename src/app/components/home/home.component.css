@@ -1,0 +1,14 @@
+.image {
+  display: block;
+  width: 100%;
+}
+
+mark{
+  color: white;
+  background: rgba(7, 7, 7, 0.25);
+}
+
+.but{
+  background: rgba(255, 193, 7, 0.58);
+  color: black;
+}

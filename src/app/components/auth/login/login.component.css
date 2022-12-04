@@ -1,0 +1,29 @@
+/*@media screen and (min-width: 960px) and (max-width: 1279px) {*/
+/*  .height {*/
+/*    height: calc(100vh - 17.5vh);*/
+/*  }*/
+/*}*/
+
+/*@media screen and (min-width: 1280px) {*/
+/*  .height {*/
+/*    height: calc(100vh - 106px);*/
+/*  }*/
+/*}*/
+
+/*@media screen and (min-width: 1920px) {*/
+/*  .height {*/
+/*    height: auto;*/
+/*  }*/
+/*}*/
+
+/*@media screen and (max-width: 959px) {*/
+/*  .height {*/
+/*    height: auto;*/
+/*  }*/
+/*}*/
+
+input.ng-touched.ng-invalid {
+  border: 1px solid red;
+}
+
+

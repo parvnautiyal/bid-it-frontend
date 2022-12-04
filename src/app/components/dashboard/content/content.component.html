@@ -1,0 +1,7 @@
+<div class="mt-2 mb-4 ms-2">
+  <button class="btn" [class]="!addProduct?'btn-outline-primary':'btn-outline-danger'" (click)="toggleAuction()">
+    {{!addProduct ? 'Create an Auction' : 'Back'}}
+  </button>
+</div>
+<app-add-product *ngIf="addProduct" (back)="toggleAuction()"></app-add-product>
+<app-auctions *ngIf="!addProduct"></app-auctions>

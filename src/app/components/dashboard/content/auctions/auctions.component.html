@@ -1,0 +1,74 @@
+<div class="container"><h2>Auction</h2>
+  <p>These are all the currently live auctions.</p>
+  <ng-container *ngIf="!error ; else elseBlock">
+    <div *ngFor="let product of products">
+      <hr>
+      <div class="card mb-3" style="min-width: 100%;">
+        <div class="card-header bg-warning">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <a style="cursor: pointer" class="nav-link" (click)="closeUserDetals()"
+                 [class]="!userDetails?'active':''">Product
+                Details</a>
+            </li>
+            <li class="nav-item">
+              <a style="cursor: pointer" class="nav-link" (click)="openUserDetals()" [class]="userDetails?'active':''">Details
+                of Seller</a>
+            </li>
+          </ul>
+        </div>
+        <div class="row g-0" *ngIf="!userDetails">
+          <div class="col-md-4">
+            <img src="{{product.img}}" class="img-fluid rounded-start" alt="{{product.name}}">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{product.name}}</h5>
+              <p class="card-text">{{product.description}}</p>
+              <p class="card-text"><small class="text-muted"><b>Starting Price </b>
+              </small></p>
+              <p class="card-text"><small class="text-muted">
+                {{product.amount |currency:'INR'}}
+              </small></p>
+            </div>
+          </div>
+        </div>
+        <div class="row g-0" *ngIf="userDetails">
+          <div class="col-md-4">
+            <img src="../../../../../assets/images/avatar.jpg" class="img-fluid rounded-start"
+                 alt="{{product.user.username}}">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{product.user.name}}</h5>
+              <br>
+              <p class="blockquote-footer">@{{product.user.username}}</p>
+              <hr>
+              <p class="card-text"><b>Email Address: </b>{{product.user.email}}</p>
+              <p class="card-text"><b>Phone Number: </b>{{product.user.contact}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-muted">
+          <div class="ms-0 row">
+            <div class="col-md-10">
+              <p><b>Auction ends at :</b> {{calculateTime(product)}}</p>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-outline-primary" (click)="showProduct(product.id)">Bid Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #elseBlock>
+    <br>
+    <br>
+    <div class="container">
+      <alert type="danger">
+        Sorry No auctions are currently live.
+      </alert>
+    </div>
+  </ng-template>
+</div>

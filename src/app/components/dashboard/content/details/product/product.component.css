@@ -1,0 +1,19 @@
+@media screen and (min-width: 576px) {
+  img{
+    width: 300px;
+  }
+}
+
+#timer {
+  font-size: 20px;
+  color: #999;
+  letter-spacing: -1px;
+}
+#timer span {
+  font-size: 30px;
+  color: #333;
+  margin: 0 3px 0 15px;
+}
+#timer span:first-child {
+  margin-left: 0;
+}

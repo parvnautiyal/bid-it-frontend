@@ -1,0 +1,15 @@
+<div>
+  <tabset [justified]="true">
+    <tab heading="Product Details" id="tab1">
+      <app-product
+        [product]="product"
+        [currentPrice]="currentPrice"
+        (refresh)="refreshPrices()"
+        (finishAuction)="finishAuction()"
+        [message]="message"></app-product>
+    </tab>
+    <tab heading="Seller Details">
+      <app-seller [product]="product"></app-seller>
+    </tab>
+  </tabset>
+</div>

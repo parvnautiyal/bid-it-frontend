@@ -1,0 +1,48 @@
+<div class="container">
+  <button class="btn btn-danger" (click)="onBack()">
+    Back
+  </button>
+  <br>
+  <br>
+  <h1>Raise a ticket</h1>
+  <p>In case of any issues please raise a ticket with us.</p>
+  <br>
+  <form #queryForm="ngForm" (ngSubmit)="onSubmit(queryForm)" autocomplete="off">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input
+        #email="ngModel"
+        type="email"
+        class="form-control form-control-lg"
+        id="email"
+        aria-describedby="emailHelp"
+        ngModel
+        [class]="email.touched ? email.valid ? 'is-valid':'is-invalid':''"
+        name="email"
+        required
+        email>
+      <div class="invalid-feedback" *ngIf="email.touched && email.invalid">
+        {{email.hasError('email') ? 'Please enter a valid email.' : 'Email cannot be empty.'}}
+      </div>
+      <div id="emailHelp" class="form-text" *ngIf="email.untouched">Please enter your email.</div>
+    </div>
+    <label for="query" class="form-label">Query</label>
+    <textarea
+      #query="ngModel"
+      type="text"
+      class="form-control form-control-lg"
+      [class]="query.touched ? query.valid ? 'is-valid':'is-invalid':''"
+      id="query" aria-describedby="queryHelp"
+      ngModel
+      name="query"
+      required></textarea>
+    <div class="invalid-feedback" *ngIf="query.touched && query.invalid">
+      Please enter something.
+    </div>
+    <div id="queryHelp" class="form-text" *ngIf="query.untouched">Please describe your issue.</div>
+    <br>
+    <button class="btn btn-success me-2 mb-2" type="submit" [disabled]="queryForm.invalid">Submit</button>
+    <button class="btn btn-warning me-2 mb-2" type="button" (click)="onReset()">Reset</button>
+  </form>
+</div>
+<br>
